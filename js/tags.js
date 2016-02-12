@@ -2,7 +2,7 @@
 ---
 
 $( document ).ready(function() {
-  if(tag !== undefined){
+  if(tag !== undefined && tag !== "all"){
     // color selected tags
     $('.post-tag-selected').toggleClass('post-tag-selected');
     $('.label.' + tag).addClass('post-tag-selected');
@@ -19,14 +19,8 @@ $( document ).ready(function() {
   }
 });
 
-// adapted from  https://github.com/youbastard/jquery.getQueryParameters
-var getParams = function() {
-  return (document.location.search).replace(/(^\?)/,'').split("&").map(function(n){
-    return n = n.split("="),this[n[0]] = n[1],this;
-  }.bind({}))[0];
-};
-
-var tag = getParams().tag;
+// get the tag from url
+var tag = document.location.search.split("=")[1];
 
 // check if tag in the url is present in the article class
 var tagPresent = function(param_tag, article){
