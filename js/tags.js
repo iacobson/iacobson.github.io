@@ -19,6 +19,7 @@ $( document ).ready(function() {
   }
 });
 
+
 // get the tag from url
 var tag = document.location.search.split("=")[1];
 
