@@ -4,12 +4,10 @@ layout: default
 
 
 <!-- computer design -->
-<div class="ui grid container large screen computer only">
+<div class="ui grid container large screen computer only desktop-design">
   <div class="ui section hidden divider"></div>
   <div class="row">
     <div class="six wide column">
-      <div class="ui section divider hidden"></div>
-      <div class="ui section divider hidden"></div>
       <div class="home-sidebar ui sticky">
         <h2 class="site-title"><a href="{{ site.baseurl }}/index?tag=all"> iacobson.net </a></h2>
         <p class="site-motto"> a journey on rails </p>
@@ -17,7 +15,9 @@ layout: default
         {% include social_icons.html %}
         <div class="ui divider"></div>
         {% for tag in site.tags %}
-          <a class="ui tiny label post-tag {{ tag[0] }}" href="{{ site.baseurl }}/index?tag={{ tag[0] }}">
+          <!-- convert the space in tags to dash -->
+          <a class="ui tiny label post-tag {{ tag[0] | replace: " ", "-" }}"
+            href="{{ site.baseurl }}/index?tag={{ tag[0] | replace: " ", "-" }}">
             {{ tag[0] }}
             <div class="detail"> {{ tag[1].size }} </div>
           </a>
@@ -28,13 +28,14 @@ layout: default
       {% for post in site.posts %}
         {% include post_list.html %}
       {% endfor %}
-
     </div>
   </div>
 </div>
 
 
 <!-- mobile design -->
+
+{% include mobile_home_page.html %}
 
 
 

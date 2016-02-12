@@ -20,6 +20,7 @@ $( document ).ready(function() {
 });
 
 // get the tag from url
+
 var tag = document.location.search.split("=")[1];
 
 // check if tag in the url is present in the article class

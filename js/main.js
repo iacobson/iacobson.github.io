@@ -18,6 +18,26 @@ $( document ).ready(function() {
   $('.home-sidebar')
     .sticky({
       context: '.posts',
-      offset: 50
+      pushing: true,
+      offset: 200,
+      bottomOffset : 100
     });
+
+  // hide mobile design on desktop
+  hideMobileDesign();
+
+  $( window ).resize(function() {
+    hideMobileDesign();
+  });
+
 });
+
+
+var hideMobileDesign = function(){
+  if ($('.desktop-design').is(':visible')) {
+    $('.mobile-design').hide();
+  }
+  else {
+    $('.mobile-design').show();
+  }
+};
