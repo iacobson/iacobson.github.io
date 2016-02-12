@@ -11,7 +11,7 @@ To exemplify, we will take care of a small shop selling fruits and vegetables. W
 
 To make sure the requirements remain the same, we will start our exercise with a very small test:
 
-<div class="file_path">./spec/shop_spec.rb</div>
+<div class="file_path ui top attached">./spec/shop_spec.rb</div>
 ```ruby
 describe 'Shop' do
   before(:all) do
