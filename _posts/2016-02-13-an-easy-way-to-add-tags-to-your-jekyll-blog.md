@@ -30,6 +30,9 @@ tags: ["ruby", "class variable"]
 You will see on the Jekyll documentation and tutorials that you can assign the tags in many ways. I will use the array format with quotes for each tag because, as you will see later, it is possible to use multi word tags `"class variable"` (of course you can use something like `"class-variable"` and make your life easier, but I didn't want to).
 
 It is important to know that now those tags are available in all our site by calling 
+
+    {{ site.tags }}
+
 ```html
 {{ site.tags }}
 ```  
