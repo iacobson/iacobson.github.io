@@ -40,7 +40,11 @@ h1, h2, h3 {
 }
 
 .date {
-  color: $ironLight
+  color: $ironLight;
+}
+
+.mobile-design {
+  display: none;
 }
 
 @import "highlights";
