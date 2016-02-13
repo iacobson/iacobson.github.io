@@ -31,10 +31,10 @@ You will see on the Jekyll documentation and tutorials that you can assign the t
 
 It is important to know that now those tags are available in all our site by calling 
 
-    {{ site.tags }}
-
 ```html
+{%raw%}
 {{ site.tags }}
+{%endraw%}
 ```  
 
 ## Post layout
