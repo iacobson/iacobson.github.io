@@ -19,14 +19,17 @@ The tools we need are jQuery (which will need to be included in your site) and l
 
 ## Post 
 
-In the post header we will specify the post tags:
+In the post header we will specify the post tags:  
+
+<div class="file_path">./_posts/2016-02-13-my-post.md</div>
 ```html
 ---
 layout: post
 title: My title
 tags: ["ruby", "class variable"]
 ---
-```
+```  
+
 You will see on the Jekyll documentation and tutorials that you can assign the tags in many ways. I will use the array format with quotes for each tag because, as you will see later, it is possible to use multi word tags `"class variable"` (of course you can use something like `"class-variable"` and make your life easier, but I didn't want to).
 
 It is important to know that now those tags are available in all our site by calling 
