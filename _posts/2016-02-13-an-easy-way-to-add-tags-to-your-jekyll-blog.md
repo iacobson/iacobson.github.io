@@ -31,10 +31,25 @@ tags: ["ruby", "class variable"]
 ---
 ```  
 
-You will see on the Jekyll documentation and tutorials that you can assign the tags in many ways. I will use the array format with quotes for each tag because, as you will see later, it is possible to use multi word tags `"class variable"` (of course you can use something like `"class-variable"` and make your life easier, but I didn't want to).
+You will see on the Jekyll documentation and tutorials that you can assign the tags to posts in many ways. I will use the array format with quotes for each tag because, as you will see later, it is possible to use multi word tags `"class variable"` (of course you can use something like `"class-variable"` and make your life easier, but I didn't want to).
 
 It is important to know that now those tags are available in all our site by calling `{%raw%}{{ site.tags }}{%endraw%}`  
 
 ## Post layout
+
+<div class="file_path">./_layouts/post.html</div>
+```html
+{%raw%}
+{% for tag in page.tags %}
+  <a class="ui tiny label post-tag" href="{{ site.baseurl }}/index?tag={{ tag }}">{{ tag }}
+    <div class="detail"> {{ site.tags[tag].size }} </div>
+  </a>
+{% endfor %}
+{%endraw%}
+```
+We iterate over the post tags (current page) and each label have a link to the base url (e.g. **iacobson.net**) followed by the **index** page and the optional param **tag** and its value.  
+As you probably already guessed, if you want to add the total number of posts that are labeled with the respective tag you can use `site.tags[tag].size`.
+
+## Index page
 
 
