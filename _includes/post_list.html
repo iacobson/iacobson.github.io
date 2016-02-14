@@ -1,15 +1,12 @@
-<article
+{% capture tags %}
 
-  {% capture tags %}
+{% for tag in post.tags%}
+  {{ tag | replace: " ", "-"}}
+{% endfor %}
 
-  {% for tag in post.tags%}
-    {{ tag | replace: " ", "-"}}
-  {% endfor %}
+{% endcapture %}
 
-  {% endcapture %}
-
-  class="post {{ tags | truncatewords: post.tags.size | replace: "...", ""}}"
->
+<article class="post {{ tags | truncatewords: post.tags.size | replace: '...', ''}}">
 
   <h3><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h3>
   <i class="date"> {{ post.date | date: "%B %e, %Y" }} </i>

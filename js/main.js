@@ -15,11 +15,12 @@ $( document ).ready(function() {
   }, function(){
     $('.close-button .icon').removeClass('close-icon-hover').addClass('close-icon');
   });
+
+  // home page sidebar
   $('.home-sidebar')
     .sticky({
       context: '.posts',
-      pushing: true,
-      offset: 200,
+      offset: 66,
       bottomOffset : 100
     });
 

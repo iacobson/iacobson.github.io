@@ -1,7 +1,6 @@
----
----
 
 $( document ).ready(function() {
+  // call the tag related functions only if tag is present and tag is not "all"
   if(tag !== undefined && tag !== "all"){
     // color selected tags
     $('.post-tag-selected').toggleClass('post-tag-selected');
@@ -10,7 +9,6 @@ $( document ).ready(function() {
     $('article').each(function(){
         $(this).fadeOut("slow");
     });
-
     $('article').each(function(){
       if ( tagPresent(tag, this) ){
         $(this).fadeIn("slow");
@@ -20,12 +18,11 @@ $( document ).ready(function() {
 });
 
 // get the tag from url
-
 var tag = document.location.search.split("=")[1];
 
 // check if tag in the url is present in the article class
 var tagPresent = function(param_tag, article){
- if ($.inArray(param_tag, $(article).attr('class').split(' ')) > -1){
-   return true;
- }
+  if ($.inArray(param_tag, $(article).attr('class').split(' ')) > -1){
+    return true;
+  }
 };
