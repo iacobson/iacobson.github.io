@@ -102,7 +102,7 @@ Maybe the most ambiguous step is to add the tags as classes to the articles list
 For each post, we use `capture` to assign a list of the post tags to the `tags` variable. You can read more about assigning variables in liquid templates [here](https://docs.shopify.com/themes/liquid-documentation/tags/variable-tags){:target="_blank"}.   
 The capture will not return a nice list of tags so, before adding the defined variable to the article class, we truncate it to the number of tags of each post. As per the liquid documentation for `truncatewords` filter, *"An ellipsis (...) is appended to the truncated string"*, so we need to get rid of them with the `replace`.
 
-> If you have any idea about how to simplify this step, I strongly advise you to write it in the comments section
+*If you have any idea about how to simplify this step, I strongly advise you to write it in the comments section.*
 
 And with this, we finished the html and liquid part. Now is time for jQuery.
 
