@@ -1,16 +1,15 @@
 ---
 layout: post
-title: Use Polymorphic Associations to organize the Rails models
-tags: rails
+title: Use Polymorphic Associations to organize your Rails models
+tags: ["rails"]
 excerpt: "A good model structure is the premise for a clean and readable application, and polymorphic associations can be a great help."
 ---
-# Part 1: Migrations and Models
 
 Organizing the models is an essential part of application design, and will certainly have a serious impact on the way the application will evolve. A good model structure is the premise for a clean and readable application.
 
 This one of the reasons why we will want to take a closer look to the Rails ActiveRecord Polymorphic Associations.
 
-In order to try the Polymorphic Associations we will use a very basic shopping cart application, created for testing reasons. The initial state of the application can be found on this Github branch: [polymorphic-associations-initial][6ef755a1]
+In order to try the Polymorphic Associations we will use a very basic shopping cart application, created for testing reasons. The initial state of the application can be found on this Github branch: [polymorphic-associations-initial](https://github.com/iacobson/test-shop/tree/polymorphic-associations-initial){:target="_blank"}.
 
 At this point the application has a Product model which stores all the products in the shop, with the following details:
 
@@ -67,7 +66,7 @@ Before writing any code, let's think about the structure we want to build:
 
 We chose the **category** to represent the polymorphic relations, and we need to define a foreign key: `category_id` and a `category_type` that will link with the Computer or Printer models.
 
-> In our example below we will detail just the Computer model, the Printer one being quite similar. However you can see the full code on this Github branch: [polymorphic-associations-final][2cc9496e]
+> In our example below we will detail just the Computer model, the Printer one being quite similar. However you can see the full code on this Github branch: [polymorphic-associations-final](https://github.com/iacobson/test-shop/tree/polymorphic-associations-final){:target="_blank"}.
 
 ## The Migrations
 First we will need to adapt the existing Product to accept polymorphic relations:
@@ -216,7 +215,3 @@ comp.product
 => #<Product id: 8, user_id: 1, price: 2000, stock: 50, created_at: "2015-12-06 15:51:32", updated_at: "2015-12-06 15:51:32", category_type: "Computer", category_id: 6>
 ```
 
-In the [second part]({% post_url 2016-01-10-use-polymorphic-associations-to-organize-rails-models-part-2 %}) of the article we will explore the Routes, Views and Controllers in the context of polymorphic associations.
-
-[6ef755a1]: https://github.com/iacobson/test-shop/tree/polymorphic-associations-initial "polymorphic-associations-initial"
-[2cc9496e]: https://github.com/iacobson/test-shop/tree/polymorphic-associations-final "polymorphic-associations-final"
