@@ -61,3 +61,22 @@
     color: $ironDark !important;
   }
 }
+
+.twitter-share {
+  color: $ironLight;
+  font-family: $headingFont;
+  .twitter-text {
+    color: $ironLight;
+    font-size: 1.6rem;
+    &:hover {
+      color: $themeDark;
+    }
+  }
+  .twitter-button {
+    color: $ironLight;
+    font-size: 1.2rem;
+    &:hover {
+      color: $ironDark;
+    }
+  }
+}

@@ -2,7 +2,8 @@
 layout: post
 title: An easy way to add tags to your Github hosted Jekyll blog
 tags: ["jekyll", "jquery"]
-excerpt: "Using jQuery to manage the Jekyll tag filters may not be the most elegant solution, but is quite easy to implement, and works well."  
+excerpt: "Using jQuery to manage the Jekyll tag filters may not be the most elegant solution, but is quite easy to implement, and works well."
+tweet: "Add tags to Jekyll, the easy way."  
 ---
 
 Have you tried to add tags to your Jekyll powered static blog? Probably you saw there is no easy, out of the box solution to make it work (or at least I did not found one). Before we proceed, I need to make 3 remarks:  
@@ -18,7 +19,7 @@ Now that we've clarified the context, let's proceed with the implementation:
 The main idea is to filter the on page static generated content with the help of jQuery. In order to do this, we need to have some kind of indication of the tag that we want to display. We will achieve this by passing the tag in the url, as optional parameter (e.g. `http://iacobson.net/index?tag=ruby`). With jQuery we parse the current url and then filter the posts list to display just the posts that have this specific tag.  
 The tools we need are jQuery (which will need to be included in your site) and liquid template filters (liquid is the templating language used by Jekyll).
 
-## Post 
+## Post
 
 In the post header we will specify the post tags:  
 
@@ -41,7 +42,7 @@ It is important to know that now those tags are available in all our site by cal
 ```html
 {%raw%}
 {% for tag in page.tags %}
-  <a class="ui tiny label post-tag" 
+  <a class="ui tiny label post-tag"
 	href="{{ site.baseurl }}/index?tag={{ tag | replace: " ", "-" }}">
 	{{ tag }}
     <div class="detail"> {{ site.tags[tag].size }} </div>
@@ -85,13 +86,13 @@ Maybe the most ambiguous step is to add the tags as classes to the articles list
 {%raw%}
 {% for post in site.posts %}
 	{% capture tags %}
-	
+
 	{% for tag in post.tags%}
 	  {{ tag | replace: " ", "-"}}
 	{% endfor %}
-	
+
 	{% endcapture %}
-	
+
 	<article class="post {{ tags | truncatewords: post.tags.size | replace: '...', ''}}">
 	<!-- article details here -->
 	</article>
@@ -155,6 +156,6 @@ If you have some other ideas that will involve running liquid templating code in
 ```html
 ---
 ---
-``` 
+```
 
 Now all liquid filters, tags, etc. are available in your javascript.

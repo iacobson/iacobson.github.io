@@ -35,7 +35,25 @@ layout: default
         {{ content }}
       </div>
     </div>
-      <div class="ui section divider"></div>
-      {% include disqus.html %}
+    <div class="ui section divider"></div>
+    <div class="twitter-share">
+      <small>
+        Find this article useful? Tweet it to the world!
+      </small>
+      <br>
+      <br>
+      <i class="quote left icon big"></i>
+      <a class="twitter-text" href='https://twitter.com/intent/tweet?text="{{ page.tweet }}" &url={{ site.url }}{{ page.url }}' target="blank">
+        <i>{{ page.tweet }}</i>
+      </a>
+      <br>
+      <a href='https://twitter.com/intent/tweet?text="{{ page.tweet }}" &url={{ site.url }}{{ page.url }}' target="blank">
+        <div class="twitter-button ui right aligned container">
+          click to <i class="fitted twitter icon"></i>
+        </div>
+      </a>
+    </div>
+    <div class="ui section divider"></div>
+    {% include disqus.html %}
   </div>
 </div>
