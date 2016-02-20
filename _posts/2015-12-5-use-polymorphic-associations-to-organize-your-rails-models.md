@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Use Polymorphic Associations to organize your Rails models
+title: Use polymorphic associations to organize your Rails models
 tags: ["rails"]
 excerpt: "A good model structure is the premise for a clean and readable application, and polymorphic associations can be a great help."
 tweet: "Polymorphic associations will keep your models organized."
@@ -8,9 +8,9 @@ tweet: "Polymorphic associations will keep your models organized."
 
 Organizing the models is an essential part of application design, and will certainly have a serious impact on the way the application will evolve. A good model structure is the premise for a clean and readable application.
 
-This one of the reasons why we will want to take a closer look to the Rails ActiveRecord Polymorphic Associations.
+This one of the reasons why we will want to take a closer look to the Rails ActiveRecord polymorphic associations.
 
-In order to try the Polymorphic Associations we will use a very basic shopping cart application, created for testing reasons. The initial state of the application can be found on this Github branch: [polymorphic-associations-initial](https://github.com/iacobson/test-shop/tree/polymorphic-associations-initial){:target="_blank"}.
+In order to try the polymorphic associations we will use a very basic shopping cart application, created for testing reasons. The initial state of the application can be found on this Github branch: [polymorphic-associations-initial](https://github.com/iacobson/test-shop/tree/polymorphic-associations-initial){:target="_blank"}.
 
 At this point the application has a Product model which stores all the products in the shop, with the following details:
 
@@ -39,8 +39,8 @@ The next logical action would be then to give up the product table and build ind
 
 So, most probably some kind of combination between the above methods would be a potential solution.
 
-### Enter Polymorphic Associations !
-Using Polymorphic Associations one model can belong to more models. It is a way to share data between models, and in the same time a centralization of those models.
+### Enter polymorphic associations !
+Using polymorphic associations one model can belong to more models. It is a way to share data between models, and in the same time a centralization of those models.
 
 Before writing any code, let's think about the structure we want to build:
 
