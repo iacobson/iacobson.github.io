@@ -3,6 +3,7 @@ layout: post
 title: Use Polymorphic Associations to organize your Rails models
 tags: ["rails"]
 excerpt: "A good model structure is the premise for a clean and readable application, and polymorphic associations can be a great help."
+tweet: "Polymorphic associations will keep your models organized."
 ---
 
 Organizing the models is an essential part of application design, and will certainly have a serious impact on the way the application will evolve. A good model structure is the premise for a clean and readable application.
