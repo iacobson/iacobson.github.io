@@ -3,6 +3,7 @@ layout: post
 title: Beware of ruby @@class_variable
 tags: ["ruby"]
 excerpt: "Sometimes they may not be exactly what you think they are."
+tweet: "Class variables are not always what they seem."
 ---
 
 Ruby class variables (represented with `@@variable`) may seem a good solution to store class related data, and a natural companion to some class methods. However, they may be far more "dangerous" than anticipated, and behave in unexpected ways if not used properly. Let's see one of those cases.
