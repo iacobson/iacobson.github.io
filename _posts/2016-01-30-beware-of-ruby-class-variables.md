@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Beware of ruby @@class_variable
+title: Beware of Ruby @@class_variable
 tags: ["ruby"]
 excerpt: "Sometimes they may not be exactly what you think they are."
 tweet: "Class variables are not always what they seem."
