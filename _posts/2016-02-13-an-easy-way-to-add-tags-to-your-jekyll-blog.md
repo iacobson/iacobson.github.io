@@ -116,7 +116,7 @@ We want our jQuery to do a couple of things:
 Also, do not forget to include the js file in the **index.html**
 
 The explanations are included as comments in the code below:  
-<div class="file_path">./js/index.html</div>
+<div class="file_path">./js/tag-filters.js</div>
 ```javascript
 $( document ).ready(function() {
   // call the tag related functions only if tag is present and tag is not "all"
@@ -148,6 +148,8 @@ var tagPresent = function(param_tag, article){
 ```
 
 That's it. Now you can enjoy the new functionality of your blog that will allow you to better organize your posts with tags.
+
+You can see the full code in my blog [Github repository](https://github.com/iacobson/iacobson.github.io).
 
 ## Bonus
 
