@@ -15,7 +15,7 @@ The concept of "services" can be found under many different names, in tutorials,
 
 It is your decision to organize the services folders structure, depending on your project size and complexity. Services are also a great place to store logic related to external API integrations.
 
-For this exercise, we will use as example the application in the previous blog post about [the models polymorphic associations]({% post_url 2015-12-5-use-polymorphic-associations-to-organize-the-rails-models %}). Reorganizing the models, left behind some cluttered controllers with a lot of responsibilities  that are just not in the right place (even if the application works). It is not very important to understand the application, as we will study just some isolated controller actions.
+For this exercise, we will use as example the application in the previous blog post about [the models polymorphic associations]({% post_url 2015-12-5-use-polymorphic-associations-to-organize-your-rails-models %}). Reorganizing the models, left behind some cluttered controllers with a lot of responsibilities  that are just not in the right place (even if the application works). It is not very important to understand the application, as we will study just some isolated controller actions.
 
 Remember, this is not about making the application work, but about making your code clean, readable and DRY.
 
