@@ -29,7 +29,7 @@ Our test application is a very basic shopping cart simulation. It has a list of 
     @categories = Product.pluck(:category_type).uniq.sort
 
     if params[:category] && @categories.include?(params[:category])
-      @products = Product.where(category_type: params[:category]).includes(:category) # avoids n+1 issue
+      @products = Product.where(category_type: params[:category]).includes(:category)
     else
       @products = Product.where(category_type: @categories[0]).includes(:category)
     end
@@ -42,7 +42,7 @@ Our test application is a very basic shopping cart simulation. It has a list of 
   end
 ```
 
-Well, it doesn't look quite right. Our controllers knows too many things:  
+You can certainly tell something is not right. Our controller action knows too many things:  
 
 - how to find the product categories based on the passed params
 - to filter the products based on the category
@@ -52,7 +52,7 @@ It is a serious amount of logic, living in the wrong place.
 
 Ok, what can we do about it? The first thing (and easiest) can be to move it in the Product model. But I feel like things will still not be clear enough. The Product model handling orders and categories ... doesn't sound very logical.
 
-Looks like it's the right time to write our first **service**. We need to think about some logic linking the products, categories and orders. It is important that for our service to have a meaningful name. In our case I think that all three notions above are linked with our shopping cart functionality, so we will create a "shopping cart" service.
+Looks like the right time to write our long anticipated **service**. We need to think about some logic linking the products, categories and orders. It is important for our service to have a meaningful name. In our case, all three notions above are linked with our shopping cart functionality, so we will create a "shopping cart" service.
 
 Inside our **app** folder create a new one called **services** . There we will create a new file **shopping_cart_service.rb** where we will host the logic related to the products and orders.
 
@@ -113,3 +113,4 @@ We just instantiate the newly created service class, and we can retrieve the pro
 <% @shopping_cart.current_order %>
 ```  
 
+Now we have a service that is easy to access, maintain and reuse in the future.
