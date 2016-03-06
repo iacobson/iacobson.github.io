@@ -6,13 +6,13 @@ excerpt: "A simple case study comparing Enum and Stream modules."
 tweet: "Elixir Enum vs Stream. What's the difference?"
 ---
 
-If you tried [Elixir](http://elixir-lang.org/){:target="_blank"}, almost certenly you ended up playing with collections, such as lists, tuples, maps, etc. For those, Elixir provides the `Enum` module which offers you access to lots of [useful predefined functions](http://elixir-lang.org/docs/stable/elixir/Enum.html){:target="_blank"} to parse and use the contained information.
+If you tried [Elixir](http://elixir-lang.org/){:target="_blank"}, you almost certenly ended up playing with collections, such as lists, tuples, maps, etc. For those, Elixir provides the `Enum` module, which offers you access to lots of [useful predefined functions](http://elixir-lang.org/docs/stable/elixir/Enum.html){:target="_blank"} to parse and use the contained information.
 
-However, not as popular as `Enum`, we have it's "lazy brother" `Stream`. So our goal for this article is to build some really simple examples and test the differences between the two modules.
+However, not as popular as `Enum`, we have it's "lazy brother" `Stream`. Our goal would be to build some really simple examples and test the differences between the two modules.
 
 ## Study case 1: parse the full list
 
-Our example will pick the numbers divisible by `17` from a list, we square each result and we sum them. That's it! Everything will happen inside the module `ElixirEnumStream`, which I will ignore in the code examples below. 
+Our example will pick the numbers divisible by `17` from a list, we square each result and sum them. That's it! Everything will happen inside the module `ElixirEnumStream`, which I will ignore in the code examples below. 
 
 Let's start with `Enum`:
 
@@ -26,9 +26,9 @@ def testing_enum(x) do
 end
 ```
 
-We will run the tests with [ESpec](https://github.com/antonmi/espec){:target="_blank"}, a testing framework inspired by Ruby RSpec syntax and behiveour.
+We will run the tests with [ESpec](https://github.com/antonmi/espec){:target="_blank"}, a testing framework inspired by Ruby RSpec.
 
-This is not a by any means a precision test. So, in order to make it relevant, and be able to ignore the fractions of second, we will pass a large list as argument, ranging from `1` to `50_000_000`, which will take many seconds to process.
+This is not a by any means a precision test. So, in order to make it relevant, and be able to ignore the fractions of a second, we will pass a large integers list as argument, ranging from `1` to `50_000_000`, which will take several seconds to process.
 
 The result is `2_450_980_465_686_204_411_764`, and the processing time around **9s**. 
 
@@ -79,11 +79,11 @@ deftesting_stream_limited(x) do
 end
 ```
 
-Well, the result is the same, **but** the processing time **0.01s**. Oh yes! That looks like a real improvement!
+Well, the result is the same, **but** the processing time **0.01s**!!! Oh yes, that looks like a real improvement!
 
 ## So, what's the trick?
 
-The good thing is that there's no trick. let's take a look at the last examples and see what's really happening after each function call. To make it easier, we will use the `1..300` range.
+The good thing is that there's no trick. Let's take a look at the last examples and see what's really happening after each function call. To make it easier, we will use the `1..300` range as example.
 
 First the `Enum`:
 
@@ -92,7 +92,7 @@ iex(4)> Enum.filter(1..300, &(rem(&1,17) == 0))
 #=> [17, 34, 51, 68, 85, 102, 119, 136, 153, 170, 187, 204, 221, 238, 255, 272, 289]
 ```
 
-After we run the filter, the actual list with all values divisible by `17` will be created. Only then, `take` will limit to the first 10 entries, and create a new list with those:
+After we run the filter, the actual list with all values divisible by `17` will be created. Only then, `take` will limit it to the first 10 entries, and create a new list with those:
 
 ```elixir
 iex(5)> Enum.filter(1..300, &(rem(&1,17) == 0))|> Enum.take(10)
@@ -106,7 +106,7 @@ iex(4)> Stream.filter(1..300, &(rem(&1,17) == 0))
 #Stream<[enum: 1..300, funs: [#Function<7.16851754/1 in Stream.filter/2>]]>
 ```
 
-First of all, `Stream` is not actually creating the new list after the function was run, but only a function which will be applied to each element.
+First of all, `Stream` is not actually creating a new list after the function was run, but only a reference to a function which will be applied to each element.
 
 Then, the real improvement comes from the next piece:
 
@@ -117,7 +117,7 @@ iex(7)> Stream.filter(1..300, &(rem(&1,17) == 0))|> Stream.take(10)
   #Function<35.16851754/1 in Stream.take/2>]]>
 ```
 
-Not only that `Stream` is not creating intermediary lists, but `take` will not wayt for the `filter` to check all if all elements of the list are divisible by `17`. As soon as it have the first `10` elements, returns the result:
+Not only that `Stream` is not creating intermediary lists, but `take` will not wayt for the `filter` to check all the elements in the list divisible by `17`. As soon as it gets the first `10` elements, returns the result:
 
 ```elixir
 iex(9)> Stream.filter(1..300, &(rem(&1,17) == 0))|> Stream.take(10)|>Enum.to_list
