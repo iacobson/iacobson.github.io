@@ -3,7 +3,7 @@ layout: post
 title: Lazy enumerables in Elixir
 tags: elixir
 excerpt: "A simple case study comparing Enum and Stream modules."
-tweet: "Elixir Enum vs Stream. What's the difference?"
+tweet: "Elixir Enum vs Stream. What is the difference?"
 
 ---
 
