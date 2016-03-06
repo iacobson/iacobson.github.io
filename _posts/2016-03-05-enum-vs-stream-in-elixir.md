@@ -117,7 +117,7 @@ iex(7)> Stream.filter(1..300, &(rem(&1,17) == 0))|> Stream.take(10)
   #Function<35.16851754/1 in Stream.take/2>]]>
 ```
 
-Not only that `Stream` is not creating intermediary lists, but `take` will not wayt for the `filter` to check all the elements in the list divisible by `17`. As soon as it gets the first `10` elements, returns the result:
+Not only that `Stream` is not creating intermediary lists, but `take` will not wayt for the `filter` to check all the elements in the list which are divisible by `17`. As soon as it gets the first `10` elements, returns the result:
 
 ```elixir
 iex(9)> Stream.filter(1..300, &(rem(&1,17) == 0))|> Stream.take(10)|>Enum.to_list
