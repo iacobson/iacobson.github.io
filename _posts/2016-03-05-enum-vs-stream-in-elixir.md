@@ -4,6 +4,7 @@ title: Lazy enumerables in Elixir
 tags: elixir
 excerpt: "A simple case study comparing Enum and Stream modules."
 tweet: "Elixir Enum vs Stream. What's the difference?"
+
 ---
 
 If you tried [Elixir](http://elixir-lang.org/){:target="_blank"}, you almost certenly ended up playing with collections, such as lists, tuples, maps, etc. For those, Elixir provides the `Enum` module, which offers you access to lots of [useful predefined functions](http://elixir-lang.org/docs/stable/elixir/Enum.html){:target="_blank"} to parse and use the contained information.
