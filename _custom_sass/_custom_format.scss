@@ -80,3 +80,20 @@
     }
   }
 }
+
+.prev-next-link .column {
+  div {
+    color: $iron;
+    font-family: $headingFont;
+    &:hover {
+      color: $ironDark;
+    }
+  }
+
+  a {
+    color: $ironLight;
+    &:hover {
+      color: $themeDark;
+    }
+  }
+}

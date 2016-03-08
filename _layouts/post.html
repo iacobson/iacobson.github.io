@@ -38,7 +38,7 @@ layout: default
     <div class="ui section divider"></div>
     <div class="twitter-share">
       <small>
-        Find this article useful? Tweet it to the world!
+        Find this post useful? Tweet it to the world!
       </small>
       <br>
       <br>
@@ -53,6 +53,34 @@ layout: default
         </div>
       </a>
     </div>
+    <div class="ui section divider"></div>
+    <div class="ui two column relaxed stackable grid prev-next-link">
+      <div class="left aligned column">
+        {% if page.previous.url %}
+          <a class="prev" href="{{page.previous.url}}">
+            <div>
+              <i class="chevron left icon"></i> PREVIOUS POST
+            </div>
+            {{page.previous.title}}
+          </a>
+        {% endif %}
+      </div>
+      <div class="right aligned column">
+        {% if page.next.url %}
+          <a class="next" href="{{page.next.url}}">
+            <div>
+              NEXT POST <i class="chevron right icon"></i>
+            </div>
+            {{page.next.title}}
+          </a>
+        {% endif %}
+      </div>
+
+    </div>
+
+
+
+
     <div class="ui section divider"></div>
     {% include disqus.html %}
   </div>
