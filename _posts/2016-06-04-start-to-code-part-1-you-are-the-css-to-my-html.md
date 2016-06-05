@@ -31,7 +31,7 @@ Now that we clarified the context, we can begin:
 [Free Code Camp](https://www.freecodecamp.com/map){:target="_blank"} exercises and projects are web based, meaning you will not need to install any software on your computer, or use any specific operating system. Everything will happen in your browser. This will allow you to start practicing quickly, without frustrating configuration steps.  
 Personally, I'm not a huge fan of in browser programming, and I prefer my own editor and environment, but at this point the main goal is to build things and not to lose either time or focus. This is the moment when you will realize if web development is for you, and that you will enjoy spending many, many hours learning new things.  
 
-I just mentioned **focus**. Those first weeks are a time of questions and doubts, a time when you would like to know a lot of things, a time when you will find a lot of interesting subjects to read about ... and to get lost into. Focus is essential, especially at the beginning of your path. Don't ask yourself too many questions at this point. Just progress through the assignments and projects.
+I just mentioned **focus**. Those first weeks are generally a time of questions and doubts, a time when you would like to know a lot of things, a time when you will find a lot of interesting subjects to read about ... and to get lost into. Focus is essential, especially at the beginning of your path. Don't ask yourself too many questions at this point. Just progress through the assignments and projects.
 
 After you finish the paths above and the projects you will:
 - have a pretty good idea if you enjoy coding or not
