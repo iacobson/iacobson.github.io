@@ -22,22 +22,22 @@ Now that we clarified the context, we can begin:
 ### Start easy  
 
 [Free Code Camp](https://www.freecodecamp.com/map){:target="_blank"} is a very good place to start the journey. Check their "map" and just begin with the basic paths:  
-- HTML5 and CSS – 5 hours
-- Responsive Design – 5 hours
-- JQuery – 3 hours
-- Basic Front End Projects
-- Basic JavaScript – 10 hours
+- HTML5 and CSS – 5 hours  
+- Responsive Design – 5 hours  
+- JQuery – 3 hours  
+- Basic Front End Projects  
+- Basic JavaScript – 10 hours  
 
 [Free Code Camp](https://www.freecodecamp.com/map){:target="_blank"} exercises and projects are web based, meaning you will not need to install any software on your computer, or use any specific operating system. Everything will happen in your browser. This will allow you to start practicing quickly, without frustrating configuration steps.  
 Personally, I'm not a huge fan of in browser programming, and I prefer my own editor and environment, but at this point the main goal is to build things and not to lose either time or focus. This is the moment when you will realize if web development is for you, and that you will enjoy spending many, many hours learning new things.  
 
-I just mentioned **focus**. Those first weeks are generally a time of questions and doubts, a time when you would like to know a lot of things, a time when you will find a lot of interesting subjects to read about ... and to get lost into. Focus is essential, especially at the beginning of your path. Don't ask yourself too many questions at this point. Just progress through the assignments and projects.
+I just mentioned **focus**. Those first weeks are generally a time of questions and doubts, a time when you would like to know a lot of things, a time when you will find a lot of interesting subjects to read about ... and to get lost into. Focus is essential, especially at the beginning of your path. Don't ask yourself too many questions at this point. Just progress through the assignments and projects.  
 
-After you finish the paths above and the projects you will:
-- have a pretty good idea if you enjoy coding or not
-- have some solid frontend basics knowledge
-- developed your first portfolio projects
-- be able to build a static presentation website
+After you finish the paths above and the projects you will:  
+- have a pretty good idea if you enjoy coding or not  
+- have some solid frontend basics knowledge  
+- developed your first portfolio projects  
+- be able to build a static presentation website  
 
 If the steps above just made you curious to see what's next, before proceeding to more serious stuff, would be a good moment to find a bit more about the web, as you already have some practical understanding. The following resources from [The Odin Project](http://www.theodinproject.com/courses) would be a good start:  
 
