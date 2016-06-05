@@ -3,7 +3,7 @@ layout: post
 title: "Start to code - Part 1: You are the CSS to my HTML"
 tags: misc
 excerpt: "A (web) love story. Or how to start your web development learning journey."
-tweet: "Ever wanted to learn programming? Here's a few tips on how to start."
+tweet: "Ever wanted to learn programming? A few tips about how you can start."
 
 ---
 
@@ -41,8 +41,8 @@ After you finish the paths above and the projects you will:
 
 If the steps above just made you curious to see what's next, before proceeding to more serious stuff, would be a good moment to find a bit more about the web, as you already have some practical understanding. The following resources from [The Odin Project](http://www.theodinproject.com/courses) would be a good start:  
 
-http://www.theodinproject.com/introduction-to-web-development/what-a-web-developer-does  
-http://www.theodinproject.com/web-development-101/how-does-the-web-work  
-http://www.theodinproject.com/web-development-101/terms-to-know  
+[http://www.theodinproject.com/introduction-to-web-development/what-a-web-developer-does](http://www.theodinproject.com/introduction-to-web-development/what-a-web-developer-does)  
+[http://www.theodinproject.com/web-development-101/how-does-the-web-work](http://www.theodinproject.com/web-development-101/how-does-the-web-work)  
+[http://www.theodinproject.com/web-development-101/terms-to-know](http://www.theodinproject.com/web-development-101/terms-to-know)  
 
 Good, it's now time to choose your full stack dev weapons!
