@@ -7,7 +7,7 @@ tweet: "Ever wanted to learn programming? A few tips about how you can start."
 
 ---
 
-Programming is not an easy job. Don't let yourself tricked by those adverts for some courses, claiming that you will become an expert programmer in just a few weeks, with no previous knowledge required.  
+Programming is not an easy job. Don't let yourself tricked by some of those courses adverts claiming that you will become an expert programmer in just a few weeks of part time learning with, with no previous knowledge required.  
 On the other hand, if you have even a small hint that you may like coding, or your are purely curious about it, **give it a try!** it may worth the effort!  For this first part you will need just time and commitment.
 
 When I started this blog, I planned to publish only technical articles related to the things I am learning about, or developing. However, since a few weeks, the company I'm working for, introduced this concept of [lightning talks](https://en.wikipedia.org/wiki/Lightning_talk "lightning talks"){:target="_blank"}, and my first presentation will be about how you can start your web development journey with absolute zero knowledge. This is how I ended up writing this series of 3 articles.  
