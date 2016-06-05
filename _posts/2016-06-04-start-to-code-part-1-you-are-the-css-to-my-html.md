@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Start to code - Part 1: You are the CSS to my HTML
+title: "Start to code - Part 1: You are the CSS to my HTML"
 tags: misc
 excerpt: "A (web) love story. Or how to start your web development learning journey."
 tweet: "Ever wanted to learn programming? Here's a few tips on how to start."
