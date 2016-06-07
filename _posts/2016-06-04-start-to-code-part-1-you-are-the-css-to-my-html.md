@@ -7,8 +7,8 @@ tweet: "Ever wanted to learn programming? A few tips about how you can start."
 
 ---
 
-Programming is not an easy job. Don't let yourself tricked by some of those courses adverts claiming that you will become an expert programmer in just a few weeks of part time learning with, with no previous knowledge required.  
-On the other hand, if you have even a small hint that you may like coding, or your are purely curious about it, **give it a try!** it may worth the effort!  For this first part you will need just time and commitment.
+Programming is not an easy job. Don't let yourself tricked by some of those courses adverts claiming that you will become an expert programmer in just a few weeks of 2 hours learning pr day, with no previous knowledge required.  
+On the other hand, if you have even a small hint that you may like coding, or your are purely curious about it, **give it a try!** it may worth the effort!  For this first part you will just need time and commitment.
 
 When I started this blog, I planned to publish only technical articles related to the things I am learning about, or developing. However, since a few weeks, the company I'm working for, introduced this concept of [lightning talks](https://en.wikipedia.org/wiki/Lightning_talk "lightning talks"){:target="_blank"}, and my first presentation will be about how you can start your web development journey with absolute zero knowledge. This is how I ended up writing this series of 3 articles.  
 
@@ -33,16 +33,16 @@ Personally, I'm not a huge fan of in browser programming, and I prefer my own ed
 
 I just mentioned **focus**. Those first weeks are generally a time of questions and doubts, a time when you would like to know a lot of things, a time when you will find a lot of interesting subjects to read about ... and to get lost into. Focus is essential, especially at the beginning of your path. Don't ask yourself too many questions at this point. Just progress through the assignments and projects.  
 
-After you finish the paths above and the projects you will:  
+When finished the paths above and the projects you will:  
 - have a pretty good idea if you enjoy coding or not  
 - have some solid frontend basics knowledge  
 - developed your first portfolio projects  
 - be able to build a static presentation website  
 
-If the steps above just made you curious to see what's next, before proceeding to more serious stuff, would be a good moment to find a bit more about the web, as you already have some practical understanding. The following resources from [The Odin Project](http://www.theodinproject.com/courses) would be a good start:  
+If the steps above just made you curious to see what's next, before proceeding to more serious stuff, would be a good moment to find a bit more about the web, as you already have some practical understanding. The following resources from [The Odin Project](http://www.theodinproject.com/courses){:target="_blank"} would be a good start:  
 
-[http://www.theodinproject.com/introduction-to-web-development/what-a-web-developer-does](http://www.theodinproject.com/introduction-to-web-development/what-a-web-developer-does)  
-[http://www.theodinproject.com/web-development-101/how-does-the-web-work](http://www.theodinproject.com/web-development-101/how-does-the-web-work)  
-[http://www.theodinproject.com/web-development-101/terms-to-know](http://www.theodinproject.com/web-development-101/terms-to-know)  
+[http://www.theodinproject.com/introduction-to-web-development/what-a-web-developer-does](http://www.theodinproject.com/introduction-to-web-development/what-a-web-developer-does){:target="_blank"}  
+[http://www.theodinproject.com/web-development-101/how-does-the-web-work](http://www.theodinproject.com/web-development-101/how-does-the-web-work){:target="_blank"}  
+[http://www.theodinproject.com/web-development-101/terms-to-know](http://www.theodinproject.com/web-development-101/terms-to-know){:target="_blank"}  
 
 Good, it's now time to choose your full stack dev weapons!
