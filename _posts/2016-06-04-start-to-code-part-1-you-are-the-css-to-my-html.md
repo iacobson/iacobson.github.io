@@ -45,4 +45,4 @@ If the steps above just made you curious to see what's next, before proceeding t
 [http://www.theodinproject.com/web-development-101/how-does-the-web-work](http://www.theodinproject.com/web-development-101/how-does-the-web-work){:target="_blank"}  
 [http://www.theodinproject.com/web-development-101/terms-to-know](http://www.theodinproject.com/web-development-101/terms-to-know){:target="_blank"}  
 
-Good, it's now time to choose your full stack dev weapons!
+Good, it's now time to [choose your full stack dev weapons]({% post_url 2016-06-05-start-to-code-part-2-choose-your-full-stack-weapons %})!
