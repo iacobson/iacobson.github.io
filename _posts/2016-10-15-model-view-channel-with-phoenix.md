@@ -7,15 +7,6 @@ tweet: "A ToDo test aplication in Elixir Phoenix using channels and no controlle
 
 ---
 
-- this is not a tutorial - probably there are better ways to do it
-- what is it then? - just a learning app. Try to follow CRUD actions just as a normal controller
-- want to talk about the code organization
-- challenges
-- how to use the heroku app
-- conclusions  
-
-
-
 A while ago, contributing to [this project](https://github.com/efexen/formerer){:target="_blank"}, I had my first contact with Phoenix Channels. I enjoyed it so much and thought why not to build an app that uses only Channels instead of Controllers?  
 
 This is how ChanDoThis experiment was born. Yes, just another todo list application... but a live updating one :) .The app is live on Heroku, and available [here.](https://chandothis.herokuapp.com/){:target="_blank"}  
