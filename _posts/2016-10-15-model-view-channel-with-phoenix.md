@@ -167,7 +167,7 @@ To finish with the structure, below is a diagram of the system components and th
 
 ```bash
 +-------------+        +-------------+                  +-------------+
-|             | input  |             |  action function |             |
+|             | input  |             |  action func     |             |
 | USER        +--------> JS VIEWS    +------------------> JS ACTIONS  |
 |             |        |             |   push / receive |             |
 +-------------+        +-^-----------+                  +--^-------+--+
