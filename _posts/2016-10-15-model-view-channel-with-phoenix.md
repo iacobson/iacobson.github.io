@@ -7,11 +7,11 @@ tweet: "A ToDo test aplication in Elixir Phoenix using channels and no controlle
 
 ---
 
-A while ago, contributing to [this project](https://github.com/efexen/formerer){:target="_blank"}, I had my first contact with Phoenix Channels. I enjoyed it so much and thought why not to build an app that uses only Channels instead of Controllers?  
+A while ago, contributing to [the Formerer project](https://github.com/efexen/formerer){:target="_blank"}, I had my first contact with Phoenix Channels. I enjoyed it so much and thought why not to build an app that uses only Channels instead of Controllers?  
 
 This is how ChanDoThis experiment was born. Yes, just another todo list application... but a live updating one :) .The app is live on Heroku, and available [here.](https://chandothis.herokuapp.com/){:target="_blank"}  
 
-Just to clarify, this post is not a tutorial or step by step guide on how to build a controller-less application in Phoenix. I'm pretty sure there are better ways to do it. I will focus more on the code organization and relation between front-end and back-end.  
+Just to clarify, this post is not a tutorial or step by step guide on how to build a controller-less application in Phoenix. I will focus more on the code organization and the relation between front-end and back-end of the app.  
 
 ### Specifications
 
@@ -28,7 +28,7 @@ Before starting to code I defined the minimal structure and functionalities:
 
 #### Phoenix Controller and Template
 
-Let's start from the single controller that exists in the app. It's the `PageController` with a single `index` action. This generates the default Phoenix welcome page.  
+Let's start with the only controller that exists in the app. It's the `PageController` with a single `index` action. This generates the default Phoenix welcome page.  
 
 The page template includes also the fixed structure of lists and todos. It also has some data attributes such as:  
 
@@ -68,11 +68,12 @@ For example, this is how you create a list:
 <div class="file_path">./web/static/js/views/list.js</div>
 ```javascript
 
-// user clicks the `create-list` button and calls createListPush  from the actions file
+// user clicks the `create-list` button and calls createListPush
+// from the actions file
 $(document).on('click', '[data-behaviour="create-list"]',
   () => ListActions.createListPush(channel))
 
-// the view receives the message from the channel with event create 
+// the view receives the message from the channel with event "create" 
 // calls the createListReceive with the response argument
 channel.on('create', resp => {
   ListActions.createListReceive(resp)
@@ -91,7 +92,7 @@ Coming back to the above example, this is how the action JS file handles the cre
 <div class="file_path">./web/static/js/actions/list_actions.js</div>
 ```javascript
 // get the name of the new list from the form
-// push the event create to the channel
+// push the event "create" to the channel
 // render any errors
 
 createListPush(channel){
@@ -118,7 +119,7 @@ The CRUD actions are organized in Push / Receive pairs.
 
 ### Channels
 
-Channels use pattern matching to map the events sent by the front-end. This reflects the same CRUD actions from the JS.  
+Channels use pattern matching to map the events sent by the front-end. This reflects the same CRUD actions as the JS above.  
 
 <div class="file_path">./web/channels/list_channel.ex</div>
 ```elixir
@@ -132,7 +133,8 @@ end
 defp handle_action(topic, action, socket) do
   case action do
     {:ok, list} ->
-      # if the list is persisted, broadcast the event (:create) and list JSON
+      # if the list is persisted
+      # broadcast the event "create" and list JSON
       broadcast!(socket, topic, list_to_json(list))
       {:reply, :ok, socket}
     {:error, changeset} ->
@@ -156,13 +158,14 @@ end
 
 There are other components we did not review, such as models or lib modules, but those are not relevant in the context of this case study.  
 
-However, the full code is available on Github: [https://github.com/iacobson/chan_do_this/blob/lists-todos-final](https://github.com/iacobson/chan_do_this/blob/lists-todos-final){:target="_blank"} if you want to take a look.  
+However, the full code is available on Github:  
+[https://github.com/iacobson/chan_do_this/blob/lists-todos-final](https://github.com/iacobson/chan_do_this/blob/lists-todos-final){:target="_blank"} if you want to take a closer look.  
 
 To finish with the structure, below is a diagram of the system components and the interactions between them:
 
 
 
-```html
+```bash
 +-------------+        +-------------+                  +-------------+
 |             | input  |             |  action function |             |
 | USER        +--------> JS VIEWS    +------------------> JS ACTIONS  |
@@ -186,7 +189,7 @@ To finish with the structure, below is a diagram of the system components and th
 
 ### Test-drive the app  
 
-As mentioned in the beginning of tis post, the app is hosted on Heroku: [https://chandothis.herokuapp.com/](https://chandothis.herokuapp.com/){:target="_blank"}
+As mentioned in the beginning of this post, the app is hosted on Heroku: [https://chandothis.herokuapp.com/](https://chandothis.herokuapp.com/){:target="_blank"}
 
 You will need 2 browser windows opened in split screen. Or, even better, open the app at the same time on 2 different devices.  
 
@@ -197,7 +200,7 @@ Create new todos, edit their names, delete or complete them. Everything should r
 
 ### Conclusion
 
-This is a simple, straightforward project, but I think it achieved its goal. There are simple ways to (almost) avoid controllers in Phoenix. Channels can take their place while keeping a CRUD-like structure.  
+This is a simple, straightforward project, but I think it achieved its goal. There are ways to (almost) avoid controllers in Phoenix. Channels can take their place while keeping a CRUD-like structure.  
 
 This is not something you would want to do for all your projects. But whenever you need many live updates on the page, it may be an option.  
 
@@ -208,13 +211,9 @@ While it was so fun to work on this app, it wasn't entirely what I expected when
 With all the good and bad parts, this can be a very good learning project. There are many things that you can build and test on top of it such as:  
 
 - add more clarity to the JS side and remove duplications  
-
 - add some form of Router  
-
-- implement a controler-less authentication system  
-
+- implement a controler-less user authentication system  
 - use Phoenix Presence to show online users  
-
-and much more.   
+and so much more.  
 
 Just [clone the project](https://github.com/iacobson/chan_do_this){:target="_blank"} and have fun!
