@@ -181,7 +181,7 @@ To finish with the structure, below is a diagram of the system components and th
                          |       |                                 |
 +-------------+        +-+-------v---+                  +----------v--+
 |             |persist |             |                  |             |
-| DB          <--------+ CHANNELS    |                  |HBS TEMPLATES|
+| DB          <--------+ CHANNELS    |                  | HBS TEMPLT  |
 |             |        |             |                  |             |
 +-------------+        +-------------+                  +-------------+
 ```
