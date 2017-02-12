@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "The Elixir Bottleneck"
-tags: elixir, performance, benchmark, profiling
+tags: elixir performance benchmark profiling
 excerpt: "Benchmarking and profiling Elixir apps. Measure, identify and fix potential bottlenecks."
 tweet: "Measure, identify and fix potential bottlenecks in your Elixir app."
 
