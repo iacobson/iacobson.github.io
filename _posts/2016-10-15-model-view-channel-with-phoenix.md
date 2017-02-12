@@ -40,7 +40,7 @@ Those containers will be soon used to render dynamic lists and todos.
 
 The JS side will take the role of Views and Templates.  
 
-```bash
+```
 web/static/js/
   app.js
   sockets.js
@@ -165,7 +165,7 @@ To finish with the structure, below is a diagram of the system components and th
 
 
 
-```bash
+```
 +-------------+        +-------------+                  +-------------+
 |             | input  |             |  action func     |             |
 | USER        +--------> JS VIEWS    +------------------> JS ACTIONS  |

@@ -23,7 +23,7 @@ This post explores Elixir tools you can use to measure the performance of the ap
 Our demo app is called MagicNumber, and yes, it calculates a ... number, based on some inputs. 
 
 <div class="file_path">terminal</div>
-```bash
+```
 mix new magic_number
 ```  
 
@@ -53,7 +53,7 @@ end
 
 We can try it in the console:  
 <div class="file_path">console</div>
-```bash
+```
 iex(1)> MagicNumber.Constant.calculate(20)
 6765
 iex(2)> MagicNumber.Constant.calculate(30)
@@ -83,7 +83,7 @@ end
 
 We benchmark the function `calculate/1` with default `@number` value 30. The `time: 10` option is the actual time our code runs. Then in your console call the newly created `benchmark` function:  
 
-```bash
+```
 ▶ iex -S mix
 iex(1)> MagicNumber.Constant.benchmark()
 Elixir 1.4.0
@@ -154,7 +154,7 @@ Then run the benchmark with the following arguments:
 - the previously known result of our `Constant.calculate` (832040):  
 
 <div class="file_path">console</div>
-```bash
+```
 ▶ iex -S mix
 iex(1)> MagicNumber.Variable.benchmark(5, 832040)
 
@@ -193,7 +193,7 @@ Armed with the knowledge gained above, I can roughly estimate the average execut
 Let's use Benchee to see if the assumption is correct. I add the `benchmark` function exactly as in the other modules, and run it:  
 
 <div class="file_path">console</div>
-```bash
+```
 ▶ iex -S mix
 iex(1)> MagicNumber.benchmark()
 
@@ -264,7 +264,7 @@ For a very small application such as `MagicNumber` it's easy to spot this kind o
 Finding where the issue comes from just with ExProf is not that simple. This is why we can complete our investigation with the help of `mix profile.fprof`. The printed results are quite long, so I will look for the `fibonacci` function we identified above:
 
 <div class="file_path">console</div>
-```bash
+```
 ▶ mix profile.fprof --callers -e MagicNumber.get_v1
 
                                                                    CNT    ACC (ms)    OWN (ms)
@@ -303,7 +303,7 @@ end
 Run again the ExProf on the new function:
 
 <div class="file_path">console</div>
-```bash
+```
 'Elixir.MagicNumber.Constant':calculate/1                             1     0.00         4  [      4.00]
 'Elixir.MagicNumber.Variable':'-constant_divisors/2-fun-0-'/2   1464482     7.69   3193375  [      2.18]
 'Elixir.MagicNumber.Constant':fibonacci/1                       2692537    13.75   5709236  [      2.12]
@@ -328,7 +328,7 @@ end
 Running the new benchmark will show us the real improvement, in a really nice way:  
 
 <div class="file_path">console</div>
-```bash
+```
 iex(1)> MagicNumber.benchmark()
 Name             ips        average  deviation         median
 get_v2          1.76      568.91 ms     ±1.74%      569.53 ms
@@ -370,7 +370,7 @@ Running the benchmark for `get_v2` and `get_v3`, we can see the impact of the ne
 
 
 <div class="file_path">console</div>
-```bash
+```
 Name             ips        average  deviation         median
 get_v3          2.86      350.26 ms     ±3.60%      347.24 ms
 get_v2          1.67      600.31 ms     ±3.59%      596.17 ms
