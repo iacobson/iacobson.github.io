@@ -9,7 +9,7 @@ tweet: "Measure, identify and fix potential bottlenecks in your Elixir app."
 I've been following for a while Nate Berkopec's [Guide to Rails Performance](https://www.railsspeed.com/){:target="_blank"}. It is a great resource about measuring and optimising your Rails apps speed.  
 We are not going to discuss Rails performance. But one of the first things that Nate emphasis in his book applies to any language or framework: 
 
-> do not start optimising your app until the metrics tell you so.  
+> _do not start optimising your app until the metrics tell you so._  
 
 
 That should be no exception for Elixir. 
@@ -180,7 +180,7 @@ defmodule MagicNumber do
 end
 ```  
 
-> _if you already observed something very wrong with this code, you are right! (see below)_   
+> _If you already observed something very wrong with this code, you are right! (see below)_   
 
 It takes a list of integers from 1 to 10. Maps it passing each of them as arguments to the `Variable.calculate/2` together with the constant. Then the results are summed. And that's it. This is our **magic number**. I called the main function `get_v1` in anticipation to the chapter below.  
 
@@ -203,12 +203,12 @@ It's time to find a **profiler**.
 
 ### ExProf ([github](https://github.com/parroty/exprof){:target="_blank"}) and `mix profile.fprof` ([hexdocs](https://hexdocs.pm/mix/Mix.Tasks.Profile.Fprof.html#content){:target="_blank"})
 
-Both of them use Erlang tools: (`:eprof`)[http://erlang.org/doc/man/eprof.html]{:target="_blank"}, respectively (`:fprof`)[http://erlang.org/doc/man/fprof.html]{:target="_blank"}.  
+Both of them use Erlang tools: [`:eprof`](http://erlang.org/doc/man/eprof.html){:target="_blank"}, respectively [`:fprof`](http://erlang.org/doc/man/fprof.html){:target="_blank"}.  
 A profiler will trace the execution of all functions in the code, and report the time consumed with each. So it is the perfect tool to identify bottlenecks in the application.  
 
 Sounds too good to be true? You are right again! Both profilers (at least in our application case) are far from being perfect. The added time to the `get_v1` function execution is huge. The code that runs normally in 1 second, takes more than 1 minute to ExProf and more than 5 minutes to `mix profile.fprof`. This is due to the huge number of iterations in our example. Only the `fibonacci/1` function runs 26,925,370 times! The profiler needs to record it each time. The Mix documentation warns us about those risks.  
 
-> If you want to try the examples below make sure you reduce the `@number` in the `Constant`, or be very very patient.  
+> _If you want to try the examples below make sure you reduce the `@number` in the `Constant`, or be very very patient._  
 
 As a consequence, the reported execution times are completely wrong compared to what is happening in reality. The good thing is that it doesn't matter that much. We can take those times as simple units of measure, to identify the potential bottlenecks. Let's see how it works.  
 
@@ -380,6 +380,7 @@ get_v2          1.67 - 1.71x slower
 The new function is able to run 2.86 iterations per second, compared to 1.68 of the v2. Maybe you observed the benchmark for v2 in example #1 was different (1.76 ips). I will come back to that in the Conclusions section below.
 
 ### Investigation #3  
+
 #### or, when the solution becomes the new problem  
 
 I will say from the start that this section is not strictly related to performance measuring. Yet, it has to do with a different kind of bottleneck than the ones identified above.  
@@ -392,7 +393,7 @@ Now imagine that 1,000 becomes 1,000,000 and your system will freeze for a very 
 
 ### Solution #3
 
-In such cases, you may want to limit the number of spawned parallel processes. Thanks to some of the new functions introduced in Elixir 1.4, this becomes very easy. And I'm speaking about `Task.async_stream/5`. This function has an option `:max_concurrency` that handles ... (guess what?) the maximum concurrency. You can read more about it in the (documentation)[https://hexdocs.pm/elixir/Task.html#async_stream/5]{:target="_blank"}  
+In such cases, you may want to limit the number of spawned parallel processes. Thanks to some of the new functions introduced in Elixir 1.4, this becomes very easy. And I'm speaking about `Task.async_stream/5`. This function has an option `:max_concurrency` that handles ... (guess what?) the maximum concurrency. You can read more about it in the [documentation](https://hexdocs.pm/elixir/Task.html#async_stream/5){:target="_blank"}  
 
 <div class="file_path">./lib/magic_number.ex</div>
 ```elixir
@@ -419,4 +420,4 @@ We are reaching the end of our experiment. Let's review some of the conclusions:
 - take advantage of Elixir parallel processing capabilities. But be careful about the number of running concurrent processes.  
 - keep an eye on the  `:observer`  
 
-You can find the code for the example above in this github (repository)[https://github.com/iacobson/blog_elixir_bottleneck]{:target="_blank"}
+You can find the code for the example above in this [github repository](https://github.com/iacobson/blog_elixir_bottleneck){:target="_blank"}
