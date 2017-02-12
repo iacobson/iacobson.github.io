@@ -6,8 +6,8 @@ excerpt: "Benchmarking and profiling Elixir apps. Measure, identify and fix pote
 tweet: "Measure, identify and fix potential bottlenecks in your Elixir app."
 
 ---
-I've been following for a while Nate Berkopec's [Guide to Rails Performance](https://www.railsspeed.com/){:target="_blank"}. It is a great resource about measuring and optimising your Rails apps speed.  
-We are not going to discuss Rails performance. But one of the first things that Nate emphasis in his book applies to any language or framework: 
+I've been following for a while Nate Berkopec's [Guide to Rails Performance](https://www.railsspeed.com/){:target="_blank"}. It's a great resource to learn about measuring and optimising your Rails apps speed.  
+We're not going to discuss Rails performance. But one of the first things that Nate emphasis in his book applies to any language or framework: 
 
 > _do not start optimising your app until the metrics tell you so._  
 
