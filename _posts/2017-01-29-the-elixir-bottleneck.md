@@ -12,7 +12,8 @@ We are not going to discuss Rails performance. But one of the first things that 
 > _do not start optimising your app until the metrics tell you so._  
 
 
-That should be no exception for Elixir. 
+That should be no exception for Elixir.  
+
 ## What is the goal?  
 
 This post explores Elixir tools you can use to measure the performance of the app, discover issues and help you take the right decisions. 
@@ -105,7 +106,7 @@ You can find detailed info about the other available metrics and options in the 
 
 ### The Variable
 
-The Variable `calculate/2` function will take a number and the above constant as arguments. Then it checks for some divisors and returns an average. As decided above, this code is not very important, as we are not going to change it. It just adds some more relevant processing time to our test case. Here is the code: 
+The Variable `calculate/2` function will take a number and the above constant as arguments. Then it checks for some divisors and returns an average. As decided above, this code is not very important, as we are not going to change it. It just adds some more relevant processing time to our test case. Here is the code:  
 
 <div class="file_path">./lib/variable.ex</div>
 ```elixir
@@ -162,7 +163,8 @@ calculate         18.69       53.51 ms    ±11.12%       52.22 ms
 ```
 The variable calculation will take an average of 53.51ms.
 
-### The MagicNumber
+### The MagicNumber  
+
 Finally, the `MagicNumber` module. This is where we are going to concentrate all our attention from now on.  
 
 <div class="file_path">./lib/magic_number.ex</div>
@@ -184,7 +186,8 @@ end
 
 It takes a list of integers from 1 to 10. Maps it passing each of them as arguments to the `Variable.calculate/2` together with the constant. Then the results are summed. And that's it. This is our **magic number**. I called the main function `get_v1` in anticipation to the chapter below.  
 
-## Finding the bottleneck  
+## Finding the bottleneck   
+
 Armed with the knowledge gained above, I can roughly estimate the average execution time of finding the magic number. For the `get_v1` implementation, it should be around 10 * ( 0.05s + 0.05s ) = 1s.  
 
 Let's use Benchee to see if the assumption is correct. I add the `benchmark` function exactly as in the other modules, and run it:  
@@ -203,7 +206,7 @@ It's time to find a **profiler**.
 
 ### ExProf ([github](https://github.com/parroty/exprof){:target="_blank"}) and `mix profile.fprof` ([hexdocs](https://hexdocs.pm/mix/Mix.Tasks.Profile.Fprof.html#content){:target="_blank"})
 
-Both of them use Erlang tools: [`:eprof`](http://erlang.org/doc/man/eprof.html){:target="_blank"}, respectively [`:fprof`](http://erlang.org/doc/man/fprof.html){:target="_blank"}.  
+Both of them use Erlang tools: [:eprof](http://erlang.org/doc/man/eprof.html){:target="_blank"}, respectively [:fprof](http://erlang.org/doc/man/fprof.html){:target="_blank"}.  
 A profiler will trace the execution of all functions in the code, and report the time consumed with each. So it is the perfect tool to identify bottlenecks in the application.  
 
 Sounds too good to be true? You are right again! Both profilers (at least in our application case) are far from being perfect. The added time to the `get_v1` function execution is huge. The code that runs normally in 1 second, takes more than 1 minute to ExProf and more than 5 minutes to `mix profile.fprof`. This is due to the huge number of iterations in our example. Only the `fibonacci/1` function runs 26,925,370 times! The profiler needs to record it each time. The Mix documentation warns us about those risks.  
