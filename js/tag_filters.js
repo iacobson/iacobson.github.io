@@ -1,6 +1,6 @@
 $(window).on('load', function() {
   // call the tag related functions only if tag is present and tag is not "all"
-  if(tag !== undefined && tag !== "all"){
+  if(is_home_page() && (tag !== undefined) && (tag !== "all")){
     // color selected tags
     $('.post-tag-selected').toggleClass('post-tag-selected');
     $('.label.' + tag).addClass('post-tag-selected');
@@ -25,3 +25,7 @@ var tagPresent = function(param_tag, article){
     return true;
   }
 };
+
+var is_home_page = function(){
+  return $(".column.posts").length > 0;
+}
