@@ -231,7 +231,7 @@ import ExProf.Macro
 
 And run the profiler (I've deleted the Elixir functions to save space):  
 <div class="file_path">console</div>
-```bash
+```
 ▶ iex -S mix
 MagicNumber.profiler()
 
