@@ -1,7 +1,7 @@
 ---
 ---
 
-$( document ).ready(function() {
+$(window).on('load', function() {
   // posts close button padding
   $('.close-button')
     .sticky({

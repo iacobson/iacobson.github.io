@@ -1,5 +1,4 @@
-
-$( document ).ready(function() {
+$(window).on('load', function() {
   // call the tag related functions only if tag is present and tag is not "all"
   if(tag !== undefined && tag !== "all"){
     // color selected tags
