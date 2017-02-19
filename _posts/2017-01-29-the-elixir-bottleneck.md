@@ -427,5 +427,5 @@ We are reaching the end of our experiment. Let's review some of the conclusions:
 You can find the code for the example above in this [github repository](https://github.com/iacobson/blog_elixir_bottleneck){:target="_blank"}
 
 
-![ips](/images/2017-02-18/ips.png "ips")
+[ips](/images/2017-02-18/ips.png "ips")
 
