@@ -6,6 +6,7 @@ excerpt: "Benchmarking and profiling Elixir apps. Measure, identify and fix pote
 tweet: "Measure, identify and fix potential bottlenecks in your Elixir app."
 
 ---
+
 I've been following for a while Nate Berkopec's [Guide to Rails Performance](https://www.railsspeed.com/){:target="_blank"}. It's a great resource to learn about measuring and optimising your Rails apps speed.  
 We're not going to discuss Rails performance. But one of the first things that Nate emphasis in his book applies to any language or framework: 
 
@@ -424,3 +425,7 @@ We are reaching the end of our experiment. Let's review some of the conclusions:
 - keep an eye on the  `:observer`  
 
 You can find the code for the example above in this [github repository](https://github.com/iacobson/blog_elixir_bottleneck){:target="_blank"}
+
+
+![ips](/images/2017-02-18/ips.png "ips")
+
