@@ -96,7 +96,7 @@ end
 The **v1** is the default implementation. We query the DB for top 10 discounts, every time a user is accessing the page. `Shop.Sales.list_products()` will query the discounts. `Shop.Sales.create_product()` will add a new product to the DB.  
 
 <div class="file_path">./lib/shop/sales/sales.ex</div>
-```
+```elixir
 def list_products do
   top_discounts_query()
   |> Repo.all()
