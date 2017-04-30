@@ -98,17 +98,10 @@
   }
 }
 
-table{
+.mbtablestyle {
   border-collapse: collapse;
-  border-spacing: 0;
-  border:2px solid $theme;
 
-  th{
-    border:2px solid $themeDark;
-  }
-
-  td{
-    border:1px solid $themeDark;
+  > table, td, th {
+    border: 1px solid $iron;
   }
 }
-

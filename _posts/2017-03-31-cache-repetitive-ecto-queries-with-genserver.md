@@ -270,7 +270,7 @@ Let's analyse the results:
 | Metric            | v1            | v2            | Improvement                 |
 |-------------------|--------------:|--------------:|-----------------------------|
 | Transactions      | 2,677         | 17,434        |  6.51x more transactions    |
-| Response Time     | 1.92          | 0.09          | 21.33x faster response time |
+| Response Time     | 1.92          | 0.09          | 21.33x faster response time |  
 
 
 The results are impressive, way over my expectations. Under heavy load, the cached version is a lot faster than the initial query based implementation. It is a huge improvement that requires little effort. However, you will need to decide when this kind of implementation makes sense. If you think that some of your system components will go out of sync because of the async cache setter, this simple caching may not be right for your app.  
