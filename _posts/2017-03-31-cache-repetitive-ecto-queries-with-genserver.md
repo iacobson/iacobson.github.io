@@ -36,7 +36,7 @@ Phoenix uses a new generator: `phx`
 ▶ mix phx.new shop
 ```
 
-** The article will not include every single line of code in the app, but you can [check the full version on github](https://github.com/iacobson/blog_discounter){:target="_blank"} **  
+**The article will not include every single line of code in the app, but you can [check the full version on github](https://github.com/iacobson/blog_discounter){:target="_blank"}**  
 
 The excellend Phoenix json generator will create all the boilerplate code we need:  
 
