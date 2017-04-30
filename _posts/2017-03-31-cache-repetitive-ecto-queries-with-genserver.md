@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Basic Caching for Repetitive Ecto Queries with GenServer"
+title: "Basic Caching of Repetitive Ecto Queries with GenServer"
 tags: elixir ecto caching genserver
 excerpt: "Take advantage of GenServer state to cache some simple but expensive DB operations."
 tweet: "Use GenServer to cache simple BD operations"
