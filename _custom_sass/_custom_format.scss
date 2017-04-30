@@ -98,10 +98,14 @@
   }
 }
 
-.mbtablestyle {
+table {
   border-collapse: collapse;
+  margin: 10px 0px 10px 0px;
+  border-spacing: 0;
+  border:2px solid $iron;
 
-  > table, td, th {
-    border: 1px solid $iron;
+  td, th {
+    border: 1px solid $ironLight;
+    padding: 0px 15px 0px 15px;
   }
 }
