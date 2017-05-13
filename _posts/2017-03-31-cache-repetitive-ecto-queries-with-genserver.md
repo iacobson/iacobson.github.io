@@ -18,7 +18,7 @@ Another assumption is that our shop has lots of visitors, and a moderate rate of
 
 ### Why does this example qualify for a simple caching implementation?
 
-- the **top discounts** is the same for all users. That means we have exactly the same query executed over and over again on each page visit.   
+- the **top discounts** is the same for all users. That means we have exactly the same query executed over and over again on each page visit.  
 - race conditions are not a major problem. Even if you add a new product that changes the top, the order of the operations is not critical. The new product will be there on the next visit.  
 - high traffic means a lot of requests for the discounts. Those do not change the data, instead just query it. Adding products will be the only operation that will trigger a cache refresh. We decided above that we have a moderate rate of adding new products. Think about an opposite example. We receive lots of data from many sources, but the number of visitors is very low. Caching top products query after each update would not make any sense. It would probably make our system slower in the end.  
 
@@ -93,27 +93,13 @@ scope "/api", Shop.Web do
 end
 ```
 
-The **v1** is the default implementation. We query the DB for top 10 discounts, every time a user is accessing the page. `Shop.Sales.list_products()` will query the discounts. `Shop.Sales.create_product()` will add a new product to the DB.  
+The **v1** is the default implementation. We query the DB for top 10 discounts, every time a user is accessing the page. `Shop.Sales.list_products()` will query the discounts.   
 
 <div class="file_path">./lib/shop/sales/sales.ex</div>
 ```elixir
 def list_products do
   top_discounts_query()
   |> Repo.all()
-end
-
-def create_product() do
-  previous = Enum.random(10..1000)
-  actual = round(previous * (Enum.random(20 ..90) / 100))
-  %Product{}
-  |> product_changeset(%{previous: previous, actual: actual})
-  |> Repo.insert()
-end
-
-defp product_changeset(%Product{} = product, attrs) do
-  product
-  |> cast(attrs, [:previous, :actual])
-  |> validate_required([:previous, :actual])
 end
 
 defp top_discounts_query do
@@ -168,7 +154,7 @@ We are mostly interested in the number of successful transactions **2,677** and 
 
 ### Implementing the Cache
 
-As said before, this is an extremely simple version of cache. It's designed to handle only this kind of particular repetitive task. We do not go into complex subjects as cache key expiration. The **top discounts** cache will invalidate each time we add a new product. For that we will implement `v2` version of our controller functions: `top_discounts` and `new_product`:  
+As said before, this is an extremely simple version of cache. It's designed to handle only this kind of particular repetitive task. We do not go into complex subjects as cache key expiration. The **top discounts** cache will refresh each time we add a new product. For that we will implement `v2` version of our controller function: `top_discounts`:  
 
 <div class="file_path">./lib/shop/web/controllers/product_controller.ex</div>
 ```elixir
@@ -178,19 +164,9 @@ def top_discounts(conn, %{"version" => "v2"}) do
   products = Cache.get_products_v2()
   render(conn, "index.json", products: products)
 end
-
-
-def new_product(conn, %{"version" => "v2"}) do
-  with {:ok, %Product{} = product} <- Sales.create_product() do
-    Cache.post_product_v2()
-    conn
-    |> put_status(:created)
-    |> render("show.json", product: product)
-  end
-end
 ```
 
-The **top_discount v2** gets the top discounts from the Cache (which we will detail next). The **new_product v2** triggers a cache update after the new product is saved in the database.  
+The **top_discount v2** gets the top discounts from the Cache (which we will detail next).  
 
 The **Cache** itself is just the state of a basic GenServer implementation:  
 
@@ -201,6 +177,7 @@ defmodule Shop.Cache do
   alias Shop.Sales
 
   # API
+
   def start_link do
     GenServer.start_link(__MODULE__, :ok, name: __MODULE__)
   end
@@ -209,12 +186,8 @@ defmodule Shop.Cache do
     GenServer.call(__MODULE__, :get_products_v2)
   end
 
-  def post_product_v2 do
-    GenServer.cast(__MODULE__, :post_product_v2)
-  end
-
-
   # CALLBACKS
+
   def init(:ok) do
     {:ok, Sales.list_products()}
   end
@@ -223,15 +196,10 @@ defmodule Shop.Cache do
     {:reply, state, state}
   end
 
-  def handle_cast(:post_product_v2, _state) do
-    {:noreply, Sales.list_products()}
-  end
 end
 ```
 
 When the GenServer starts, the `init` function sets the server state to the current **top discounts**. This is done by calling `Sales.list_products()`, the same function used in **top_discounts v1**. But there is a catch. In the **v1** it runs every time a user access the home page. Now it is called only once, when the GenServer starts, and then again when new products are added. For **top_discounts v2**, the user request will not hit the database, but the GenServer state.  
-
-As we do not really care about race conditions, the `post_product_v2` runs asynchronous (`handle_cast`). The access to the cache will not be delayed by the cache update.  
 
 Remember to add Cache server to the Phoenix supervision tree:  
 
@@ -278,4 +246,4 @@ But if you find yourself running the same query over and over again, you can try
 
 Don't forget to measure the results.
 
-In the next article, we will continue this example. We'll be adding new products and invalidate the cache.
+In the article [**next article**]({% post_url 2017-04-30-genserver-basic-chache-refresh %}), we will continue this example. We'll be adding new products and refresh the cache.

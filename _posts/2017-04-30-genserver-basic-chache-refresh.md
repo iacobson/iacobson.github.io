@@ -7,15 +7,24 @@ tweet: "Use GenServer to cache simple BD operations"
 
 ---
 
-In the [**previous article**]({% post_url 2017-03-31-cache-repetitive-ecto-queries-with-genserver %}) we created a basic caching system, with the help of a GenServer. We will continue the example, discussing the cache refresh. In the context of the preivous post, the cached **discounts top** would be refreshed when a new product is added in the store. Practically, we run the discounts DB query each time a new product is added. But we were assuming that this operation would not happen too often. The operation is also asynchronous, so no major impact on our shop home page.
+In the [**previous article**]({% post_url 2017-03-31-cache-repetitive-ecto-queries-with-genserver %}) we created a basic caching system, with the help of Elixir GenServer. We will continue the example, discussing the **cache refresh**.  
+
+In the context of the previous post, the cached **top discounts** would refresh when a new product is added to the store. There are no keys to consider. We would just run the discounts DB query only on product create and store it as the GenServer state. More details about this implementation in the**v2** section below.  
+
+We also assumed that this operation would not happen too often. Let's change a bit the context.  
 
 ## New Context
-Let's change a bit the context. We assume our products are created from many external feeds, at a very high rate. Of course it's an hypotetical case, with 20 concurent requests. But hopefully will ilustrate the difference between the implementations. The importance of the cache refresh is increasing. Let's see what is happening with the current state of our system. Again, if you want to check the full code of the demo app, you can find it [on github](https://github.com/iacobson/blog_discounter){:target="_blank"}.
+
+We now have many external feeds who create new products for our store at a very high rate. It's a hypothetical case, with 20 concurrent requests. But hopefully, will illustrate the difference between the implementations.  
+
+The importance of the cache refresh is increasing in this context. Let's see what is happening with the current state of our system.  
+
+Again, if you want to check the full code of the demo app, you can find it [on github](https://github.com/iacobson/blog_discounter){:target="_blank"}.
 
 ## Add New Products
 ### v1 - no caching
 
-We are going to measure the 2 existing implementations of the `new_product` function.
+We are going to measure the **new_product v1**. It is our initial approach, where our store does not use any caching.
 
 <div class="file_path">./lib/shop/web/controllers/product_controller.ex</div>
 ```elixir
@@ -47,7 +56,7 @@ end
 
 ```
 
-The **v1** just creates a product, as the responsibility to calculate the top discouts falls on the `top_discouts v1` function.
+The `create_product` in this case just creates a product. The `top_discouts v1` must recalculate the **top discounts** on every request.  
 <div class="file_path">console</div>
 ```
 ▶ siege http://127.0.0.1:4000/api/new_product/v1 -t60s -c20
@@ -73,7 +82,7 @@ We added **4033** products in a minute, with an average response of **0.05s**.
 
 ### v2 - with cache
 
-Now let's see the second version, that must also handle the cache refresh after a new product is added.  
+Now let's see the second version which handles also the cache refresh.  
 
 <div class="file_path">./lib/shop/web/controllers/product_controller.ex</div>
 ```elixir
@@ -102,7 +111,7 @@ end
 
 ```
 
-On each refresh we get the list of **top discounts**. So we can async run the  `post_product_v2`. The access to the cache will not be delayed by the cache update.  
+On each refresh, we get the list of **top discounts**. So we can run the  `post_product_v2` asynchronously. The access to the cache will not be delayed by the cache update. We do not care that much of the race conditions as the same **top discounts** query will run on each request.  
 
 <div class="file_path">console</div>
 ```
@@ -125,16 +134,15 @@ Longest transaction:	        0.90
 Shortest transaction:	        0.01
 ```
 
-It's not a huge difference, but there's a catch. If you check the server console, the **top discounts** query continues to run a long time after our one minute test is over. This is due to the fact that the cache refreshing function runs asynchronously. The approach works well as long as there are not multiple products created in the same time.
+It's not a huge difference, but there's a catch. If you check the server console, the **top discounts** query continues to run a long time after our one minute test is over. This is due to the fact that the cache refreshing function is asynchronous. The approach works well if the products would be created one by one.
 
-Under a constant products stream this is clearly not a solution as it will put constant pressure on the database. This proves again how important is to know your system before trying to optimize it.
+With parallel and constant product streams, this is not a solution. It will put too much pressure on the database. This shows again how important is to know your system before trying to optimize it.
 
 ## Optimizing the Cache Refresh
 
-The goal for this optimization is to reduce the DB pressure and achieve results comparable with the **v1** implementation. One way to achieve this, is not to touch the DB when we refresh the cache. We can simply compare the last discount in the top with the discount of the newly created product.
+The goal for this optimization is to reduce the DB pressure and achieve results comparable with the **v1** implementation. One way to achieve this is to avoid touching the DB when we refresh the cache. We can compare the last discount in the top with the discount of the new product.
 
-The implementation of the `new_product` **v3**, is similar to the **v2**, only it calls a different function from the `ShopCache` and pass the new product as argument: `Cache.post_product_v3(product)`
-
+The implementation of the `new_product` **v3**, is similar to the **v2**. It just calls a different function from the `ShopCache` and passes the new product as argument: `Cache.post_product_v3(product)`
 
 <div class="file_path">./lib/shop/cache/discount.ex</div>
 ```elixir
@@ -178,10 +186,9 @@ def formatted(new_product, new_discount) do
   }
 end
 ```
+If the new product has a higher discount than the last one in the current top, we include it in the top. We remove the last one and reorder the top.  
 
-If the new product has a higher discount than the last one in the current top, we include it in the top. We remove the last one, and reorder the top.  
-
-This implementation is much more susceptible to race conditions than **v2**. Imagine trying to update the top with 2 high discount products running in parallel processes. Only the last processed will make it in the top. This is why we need to make it synchronous, by using `handle_call`. 
+This implementation is much more susceptible to race conditions than **v2**. Imagine trying to update the top with 2 high discount products, running in parallel processes. Only the last processed will make it in the top. This is why we need to make it synchronous, by using GenServer `handle_call`.  
 
 Let's see the results:  
 
@@ -206,8 +213,6 @@ Longest transaction:	        0.25
 Shortest transaction:	        0.01
 ```
 
-The results are very similar to the **v1** implementation. This proves that we can create new products and in the same time maintain the **top discounts** updated.  
+The results are very close to the **v1** implementation. This proves that we can create new products and in the same time maintain the **top discounts** updated.  
 
-By combining the **top_discounts v2** from the [**previous article**]({% post_url 2017-03-31-cache-repetitive-ecto-queries-with-genserver %}), with the **new_product v3** we ensure fast responses for both: visiting users and adding new products to the shop.
-
-
+By combining the **top_discounts v2** from the [**previous article**]({% post_url 2017-03-31-cache-repetitive-ecto-queries-with-genserver %}), with the **new_product v3** we ensure fast responses for both actions: visiting users and new products creation.
