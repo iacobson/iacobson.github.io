@@ -9,7 +9,7 @@ tweet: "Use GenServer to cache simple BD operations"
 
 In the [**previous article**]({% post_url 2017-03-31-cache-repetitive-ecto-queries-with-genserver %}) we created a basic caching system, with the help of Elixir GenServer. We will continue the example, discussing the **cache refresh**.  
 
-In the context of the previous post, the cached **top discounts** would refresh when a new product is added to the store. There are no keys to consider. We would just run the discounts DB query only on product create and store it as the GenServer state. More details about this implementation in the**v2** section below.  
+In the context of the previous post, the cached **top discounts** would refresh when a new product is added to the store. There are no keys to consider. We would just run the discounts DB query only on product create and store it as the GenServer state. More details about this implementation in the **v2** section below.  
 
 We also assumed that this operation would not happen too often. Let's change a bit the context.  
 
@@ -56,7 +56,7 @@ end
 
 ```
 
-The `create_product` in this case just creates a product. The `top_discouts v1` must recalculate the **top discounts** on every request.  
+The `create_product` in this case just creates a product with random prices. The `top_discouts v1` must recalculate the **top discounts** on every request.  
 <div class="file_path">console</div>
 ```
 ▶ siege http://127.0.0.1:4000/api/new_product/v1 -t60s -c20
@@ -111,7 +111,7 @@ end
 
 ```
 
-On each refresh, we get the list of **top discounts**. So we can run the  `post_product_v2` asynchronously. The access to the cache will not be delayed by the cache update. We do not care that much of the race conditions as the same **top discounts** query will run on each request.  
+On each refresh, we get the list of **top discounts**. So we can run the  `post_product_v2` asynchronously. The access to the cache will not be delayed by the cache update. We do not worry that much about the race conditions as the same **top discounts** query will run on each request.  
 
 <div class="file_path">console</div>
 ```
@@ -134,7 +134,7 @@ Longest transaction:	        0.90
 Shortest transaction:	        0.01
 ```
 
-It's not a huge difference, but there's a catch. If you check the server console, the **top discounts** query continues to run a long time after our one minute test is over. This is due to the fact that the cache refreshing function is asynchronous. The approach works well if the products would be created one by one.
+It's not a huge loss of performance, but there's **a catch**. If you check the server console, the **top discounts** query continues to run a long time after our one minute test is over. This is due to the fact that the cache refreshing function is asynchronous. The approach works well if the products would be created one by one (eg. in the context of the [**previous article**]({% post_url 2017-03-31-cache-repetitive-ecto-queries-with-genserver %})).
 
 With parallel and constant product streams, this is not a solution. It will put too much pressure on the database. This shows again how important is to know your system before trying to optimize it.
 
