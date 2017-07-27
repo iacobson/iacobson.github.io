@@ -118,7 +118,7 @@ defmodule MagicNumber.Variable do
     @interval
     |> Enum.filter(&(rem(&1, var) == 0))
     |> constant_divisors(constant)
-    |> average_restult()
+    |> average_result()
   end
 
   defp constant_divisors([], _constant), do: []
@@ -128,9 +128,9 @@ defmodule MagicNumber.Variable do
     |> Enum.filter(&(rem(constant, &1) == 0))
   end
 
-  defp average_restult([]), do: 0
+  defp average_result([]), do: 0
 
-  defp average_restult(list) do
+  defp average_result(list) do
     result = Enum.sum(list) / Enum.count(list)
     Float.round(result)
   end
@@ -240,7 +240,7 @@ FUNCTION                                                          CALLS        %
 --------                                                          -----  -------      ----  [----------]
 erlang:send/2                                                         1     0.00         0  [      0.00]
 'Elixir.MagicNumber':get_v1/0                                         1     0.00         4  [      4.00]
-'Elixir.MagicNumber.Variable':average_restult/1                      10     0.00        15  [      1.50]
+'Elixir.MagicNumber.Variable':average_result/1                       10     0.00        15  [      1.50]
 'Elixir.MagicNumber.Constant':calculate/1                            10     0.00        19  [      1.90]
 'Elixir.MagicNumber.Variable':calculate/2                            10     0.00        25  [      2.50]
 'Elixir.MagicNumber':'-get_v1/0-fun-0-'/1                            10     0.00        26  [      2.60]
