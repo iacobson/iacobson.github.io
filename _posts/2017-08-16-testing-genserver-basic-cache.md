@@ -88,7 +88,9 @@ Because it contains a function that calls `Shop.Repo`.
 
 ### So what?
 
-The Cache GenServer process is started in the main application supervision tree. That means that `Shop.Repo` is called before the **test_helper.exs** is able to run `Ecto.Adapters.SQL.Sandbox.mode(Shop.Repo, :manual)` and take control over the DB connections. The Cache GenServer has a separate DB connection than our tests.
+The Cache GenServer process is started in the main application supervision tree. That means that `Shop.Repo` is called before the **test_helper.exs** is able to run  
+`Ecto.Adapters.SQL.Sandbox.mode(Shop.Repo, :manual)`  
+and take control over the DB connections. The Cache GenServer has a separate DB connection than our tests.
 
 ## Solution 1 - restart the Cache GenServer
 If you do not want to change any code in the current Cache implementation, the solution is to restart the GenServer in the setup of the test:
