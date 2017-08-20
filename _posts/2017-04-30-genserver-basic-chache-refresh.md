@@ -2,11 +2,14 @@
 layout: post
 title: "GenServer Basic Caching Refresh"
 tags: elixir ecto caching genserver
-excerpt: "Part 2 of the previous article. Optimizing the cache refresh"
+excerpt: "Part 2 of the basic caching series. Optimizing the cache refresh."
 tweet: "Use GenServer to cache simple BD operations"
 
 ---
 
+[**Part 1 - Cache repetitive Ecto Queries with GenServer**]({% post_url 2017-03-31-cache-repetitive-ecto-queries-with-genserver %})
+**Part 2 - GenServer basic caching refresh**
+[**Part 3 - Testing GenServer basic cache**]({% post_url 2017-08-16-testing-genserver-basic-cache %})
 In the [**previous article**]({% post_url 2017-03-31-cache-repetitive-ecto-queries-with-genserver %}) we created a basic caching system, with the help of Elixir GenServer. We will continue the example, discussing the **cache refresh**.  
 
 In the context of the previous post, the cached **top discounts** would refresh when a new product is added to the store. There are no keys to consider. We would just run the discounts DB query only on product create and store it as the GenServer state. More details about this implementation in the **v2** section below.  
@@ -97,7 +100,7 @@ end
 ```
 The **new_product v2** triggers a cache refresh after the new product is saved in the database.  
 
-<div class="file_path">./lib/shop/cache/discount.ex</div>
+<div class="file_path">./lib/shop/cache/cache.ex</div>
 ```elixir
 # API
   def post_product_v2 do
@@ -144,7 +147,7 @@ The goal for this optimization is to reduce the DB pressure and achieve results 
 
 The implementation of the `new_product` **v3**, is similar to the **v2**. It just calls a different function from the `ShopCache` and passes the new product as argument: `Cache.post_product_v3(product)`
 
-<div class="file_path">./lib/shop/cache/discount.ex</div>
+<div class="file_path">./lib/shop/cache/cache.ex</div>
 ```elixir
 # API
 def post_product_v3(product) do

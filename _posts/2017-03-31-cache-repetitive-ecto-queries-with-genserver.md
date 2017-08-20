@@ -7,6 +7,9 @@ tweet: "Use GenServer to cache simple BD operations"
 
 ---
 
+**Part 1 - Cache repetitive Ecto Queries with GenServer**
+[**Part 2 - GenServer basic caching refresh**]({% post_url 2017-04-30-genserver-basic-chache-refresh %})
+[**Part 3 - Testing GenServer basic cache**]({% post_url 2017-08-16-testing-genserver-basic-cache %})
 Caching is a complicated subject, and can add a lot of complexity to any application development. But, as per the title of the article, we are going to build a very simple kind of caching. We will focus on repetitive operations that have a high impact on the DB and take advantage of GenServer.  
 Can we store those queries as a GenServer state? Is it faster than the normal DB query? Let's find out!
 
@@ -170,7 +173,7 @@ The **top_discount v2** gets the top discounts from the Cache (which we will det
 
 The **Cache** itself is just the state of a basic GenServer implementation:  
 
-<div class="file_path">./lib/shop/cache/discount.ex</div>
+<div class="file_path">./lib/shop/cache/cache.ex</div>
 ```elixir
 defmodule Shop.Cache do
   use GenServer
