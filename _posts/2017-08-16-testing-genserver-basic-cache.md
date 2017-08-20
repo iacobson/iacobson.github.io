@@ -7,9 +7,10 @@ tweet: "Explore different options to test the basic caching service."
 
 ---
 
-[**Part 1 - Cache repetitive Ecto Queries with GenServer**]({% post_url 2017-03-31-cache-repetitive-ecto-queries-with-genserver %})
-[**Part 2 - GenServer basic caching refresh**]({% post_url 2017-04-30-genserver-basic-chache-refresh %})
-**Part 3 - Testing GenServer basic cache**
+[**Part 1 - Cache repetitive Ecto Queries with GenServer**]({% post_url 2017-03-31-cache-repetitive-ecto-queries-with-genserver %})  
+[**Part 2 - GenServer basic caching refresh**]({% post_url 2017-04-30-genserver-basic-chache-refresh %})  
+**Part 3 - Testing GenServer basic cache**  
+
 
 In part 1 and 2 we explored ways to use GenServer as a basic caching tool for repetitive Ecto queries. This time we will cover another aspect: testing. 
 

@@ -7,9 +7,11 @@ tweet: "Use GenServer to cache simple BD operations"
 
 ---
 
-[**Part 1 - Cache repetitive Ecto Queries with GenServer**]({% post_url 2017-03-31-cache-repetitive-ecto-queries-with-genserver %})
-**Part 2 - GenServer basic caching refresh**
-[**Part 3 - Testing GenServer basic cache**]({% post_url 2017-08-16-testing-genserver-basic-cache %})
+[**Part 1 - Cache repetitive Ecto Queries with GenServer**]({% post_url 2017-03-31-cache-repetitive-ecto-queries-with-genserver %})  
+**Part 2 - GenServer basic caching refresh**  
+[**Part 3 - Testing GenServer basic cache**]({% post_url 2017-08-16-testing-genserver-basic-cache %})  
+
+
 In the [**previous article**]({% post_url 2017-03-31-cache-repetitive-ecto-queries-with-genserver %}) we created a basic caching system, with the help of Elixir GenServer. We will continue the example, discussing the **cache refresh**.  
 
 In the context of the previous post, the cached **top discounts** would refresh when a new product is added to the store. There are no keys to consider. We would just run the discounts DB query only on product create and store it as the GenServer state. More details about this implementation in the **v2** section below.  
